@@ -37,9 +37,7 @@ const GooeyText = () => {
     circlesArray.forEach((circle, i) => {
       if (!circle) return;
       const { x, y } = path.getPointAtLength((i / noOfCircles) * pathLength);
-      requestIdleCallback(() =>
-        animate(circle, { cx: x, cy: y }, { delay: i * 0.01, ease: "easeOut" })
-      );
+      animate(circle, { cx: x, cy: y }, { delay: i * 0.01, ease: "easeOut" });
     });
   }, [index]);
 
