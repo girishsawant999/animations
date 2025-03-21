@@ -45,7 +45,7 @@ const GooeyText = () => {
     <section className="min-h-screen bg-[#B5A8D5] grid place-items-center overflow-hidden relative ">
       <svg
         viewBox="0 0 256 256"
-        className="size-[clamp(256px,80vw,100vw)]"
+        className="size-[min(500px,90vw)]"
         filter="url(#gooey)"
       >
         <defs>
