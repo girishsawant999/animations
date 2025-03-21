@@ -43,57 +43,55 @@ const GooeyText = () => {
 
   return (
     <section className="min-h-screen bg-[#B5A8D5] grid place-items-center overflow-hidden relative ">
-      <div>
-        <svg
-          viewBox="0 0 256 256"
-          className="size-[500px]"
-          filter="url(#gooey)"
-        >
-          <defs>
-            <filter id="gooey">
-              <feGaussianBlur
-                in="SourceGraphic"
-                stdDeviation="15"
-                result="blur"
-              />
-              <feColorMatrix
-                in="blur"
-                type="matrix"
-                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 60 -10"
-                result="gooey"
-              />
-              <feBlend in="SourceGraphic" in2="gooey" mode="normal" />
-            </filter>
-          </defs>
+      <svg
+        viewBox="0 0 256 256"
+        className="size-[clamp(256px,80vw,100vw)]"
+        filter="url(#gooey)"
+      >
+        <defs>
+          <filter id="gooey">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="15"
+              result="blur"
+            />
+            <feColorMatrix
+              in="blur"
+              type="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 60 -10"
+              result="gooey"
+            />
+            <feBlend in="SourceGraphic" in2="gooey" mode="normal" />
+          </filter>
+        </defs>
 
-          {pathValues.map((d, i) => (
-            <path
-              key={`path-${i}`}
-              d={d}
-              stroke="black"
-              className="hidden"
+        {pathValues.map((d, i) => (
+          <path
+            key={`path-${i}`}
+            d={d}
+            stroke="black"
+            className="hidden"
+            ref={(ref) => {
+              paths.current[i] = ref;
+            }}
+          />
+        ))}
+
+        <g>
+          {Array.from({ length: noOfCircles }).map((_, i) => (
+            <circle
+              key={`circle-${i}`}
+              cx={128}
+              cy={128}
+              r={circleRadius}
+              fill="#211C84"
               ref={(ref) => {
-                paths.current[i] = ref;
+                circles.current[i] = ref;
               }}
             />
           ))}
-
-          <g>
-            {Array.from({ length: noOfCircles }).map((_, i) => (
-              <circle
-                key={`circle-${i}`}
-                cx={128}
-                cy={128}
-                r={circleRadius}
-                fill="#211C84"
-                ref={(ref) => {
-                  circles.current[i] = ref;
-                }}
-              />
-            ))}
-          </g>
-        </svg>
-      </div>
+        </g>
+      </svg>
     </section>
   );
 };
